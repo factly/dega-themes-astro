@@ -6,7 +6,7 @@
     "baseUrl": ".", // This is important!
     "paths": {
       "@components/*": ["src/components/*"],
-      "@utils/*": ["utils/*"],
+      "@helpers/*": ["helpers/*"],
       "@static/*": ["src/static/*"],
       "@layouts/*": ["src/layouts/*"],
       "@pages/*": ["src/pages/*"],

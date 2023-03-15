@@ -1,10 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/** @jsx jsx */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'gatsby';
-import { jsx } from 'theme-ui';
-import { FaTwitter, FaFacebook } from 'react-icons/fa';
-import isBrowser from '@helpers/isBrowser';
 
 /**
  * @component Navbar
@@ -34,10 +28,10 @@ const Navbar = ({ data }) => {
       >
         <nav className="de-head-inner inner">
           <div className="de-head-brand">
-            <Link className="de-head-logo no-image" to="/">
+            <a className="de-head-logo no-image" href="/">
               {!space?.logo?.url?.proxy &&
                 (space?.title?.toUpperCase() || space?.name?.toUpperCase())}
-            </Link>
+            </a>
             <div className="de-head-brand-wrapper">
               <button
                 className="de-burger"
@@ -53,17 +47,17 @@ const Navbar = ({ data }) => {
           <div className="de-head-menu">
             <ul className="nav">
               <li className="nav-home">
-                <Link to="/">Home</Link>
+                <a href="/">Home</a>
               </li>
               {!mainMenu?.menu &&
                 defaultMenuItems.map((item) => (
                   <li key={item.title}>
-                    <Link to={item.url}>{item.name}</Link>
+                    <a href={item.url}>{item.name}</a>
                   </li>
                 ))}
               {mainMenu?.menu.map((item) => (
                 <li key={item.title}>
-                  <Link to={item.url}>{item.name}</Link>
+                  <a href={item.url}>{item.name}</a>
                 </li>
               ))}
             </ul>

@@ -1,6 +1,4 @@
-import Layout from '@components/Layout/index';
 import StoryCard from '../UI/StoryCard';
-import Seo from '@components/Seo';
 
 const Homepage = ({ data }) => {
   const { space, categories, factchecks, posts } = data;
@@ -8,8 +6,7 @@ const Homepage = ({ data }) => {
   const featuredPosts = posts.nodes.slice(0, 3);
 
   return (
-    <Layout>
-      <Seo title={space.name} />
+    <>
       <main id="site-main" className="site-main outer">
         <div className="inner posts">
           <div className="post-feed">
@@ -24,7 +21,7 @@ const Homepage = ({ data }) => {
           </div>
         </div>
       </main>
-    </Layout>
+    </>
   );
 };
 

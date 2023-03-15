@@ -1,8 +1,3 @@
-/** @jsx jsx */
-import React from 'react'; // eslint-disable-line no-unused-vars
-import { jsx } from 'theme-ui';
-import { Link } from 'gatsby';
-
 const Footer = () => (
   <footer
     sx={{
@@ -17,6 +12,7 @@ const Footer = () => (
       p: '2rem',
       mt: '3rem',
     }}
+    className="flex justify-between items-center bg-[#143F6B] text-[#98A2B3] font-normal text-base leading-6 p-8 mt-12"
   >
     <p>© {new Date().getFullYear()} Weaver - All rights reserved</p>
     <p>
@@ -27,6 +23,7 @@ const Footer = () => (
           fontWeight: 600,
           color: '#F55353',
         }}
+        className="font-semibold text-[#F55353]"
       >
         Dega
       </a>

@@ -1,0 +1,17 @@
+{
+  "name": "dega-themes-astro",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "themes/*"
+  ],
+  "scripts": {
+    "harpy": "yarn workspace harpy",
+    "dodo": "yarn workspace dodo",
+    "kite": "yarn workspace kite",
+    "quail": "yarn workspace quail",
+    "robin": "yarn workspace robin",
+    "weaver": "yarn workspace weaver",
+    "tulip": "yarn workspace tulip"
+  }
+}

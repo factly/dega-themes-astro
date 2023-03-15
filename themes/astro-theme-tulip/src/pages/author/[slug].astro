@@ -1,0 +1,92 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Author from '@components/Author.jsx';
+
+const { slug } = Astro.params;
+let data = {};
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query ($slug: String!) {
+        user(slug: $slug) {
+          id
+          first_name
+          last_name
+          email
+          display_name
+          slug
+          social_media_urls
+          description
+          medium {
+            url
+            dimensions
+          }
+        }
+        formats {
+          nodes {
+            id
+            slug
+            name
+          }
+        }
+        posts(users: { slugs: [$slug] }) {
+          nodes {
+            users {
+              id
+              first_name
+              last_name
+              display_name
+              slug
+            }
+            categories {
+              slug
+              name
+            }
+            format {
+              name
+              slug
+            }
+            medium {
+              alt_text
+              url
+              dimensions
+            }
+            published_date
+            id
+            status
+            subtitle
+            title
+            excerpt
+            slug
+          }
+        }
+      }
+    `,
+    variables: {
+      slug: slug,
+    },
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+const name = data.user.display_name
+    ? `${data.user.display_name}`
+    : `${data.user.first_name} ${data.user.last_name}`;
+---
+<Layout title={name}>
+  <Author data={data} />
+</Layout>

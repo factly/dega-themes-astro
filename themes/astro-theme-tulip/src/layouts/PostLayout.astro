@@ -1,0 +1,174 @@
+---
+import Layout from '@components/Layout/index.jsx'
+import Navbar from '@components/Layout/Navbar.jsx'
+import Footer from '@components/Layout/Footer.jsx'
+import '@styles/global.css';
+import '@styles/home.css'
+
+let data = {};
+const { post } = Astro.props;
+let url = '';
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query Homepage {
+        menu {
+          nodes {
+            menu
+            id
+            slug
+            name
+          }
+        }
+        space {
+          description
+          name
+          site_title
+          tag_line
+          site_address
+          fav_icon {
+            url
+            dimensions
+          }
+          logo {
+            url
+            dimensions
+          }
+        }
+        categories {
+          nodes {
+            id
+            slug
+            name
+            description
+            meta_fields
+            medium {
+              url
+              dimensions
+            }
+          }
+        }
+      }
+    `,
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<html>
+  <head>
+    <title>{post?.title}</title>
+    <meta name="description" content={post?.excerpt} />
+    <meta property="og:title" content={post?.title} />
+    <meta property="og:description" content={post?.excerpt} />
+    {post?.medium && <meta property="og:image" content={post?.medium?.url.proxy} />}
+    <meta property="og:url" content={url} />
+    <meta property="og:type" content="article" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="true"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/public/favicons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/public/favicons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/public/favicons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/public/favicons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/public/favicons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/public/favicons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/public/favicons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/public/favicons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/public/favicons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/public/favicons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/public/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/public/favicons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/public/favicons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/public/favicons/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/public/favicons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="robots" content="noindex" />
+    <title>{post?.title ?? "Newschecker"}</title>
+  </head>
+  <body>
+    {data && data?.menu && <Navbar data={data} client:load />}
+    <Layout data={data}>
+      <slot />
+    </Layout>
+    <Footer />
+  </body>
+</html>

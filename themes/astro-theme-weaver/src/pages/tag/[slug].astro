@@ -1,7 +1,9 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import Homepage from '@components/Pages/Homepage.jsx';
+import Tag from '@components/Pages/Tag.jsx';
 import Seo from '@components/Seo.jsx';
+import Layout from '@layouts/Layout.astro';
+
+const { slug } = Astro.params;
 
 let data = {};
 
@@ -15,53 +17,24 @@ try {
     },
     body: JSON.stringify({
       query: `
-      query Homepage {
-    space {
-      site_address
-      site_title
+  query ($id: String!) {
+    tag(slug: $id) {
+      description
+      description_html
+      id
       name
+      slug
     }
-    featuredCategories(featuredCount: 4, postLimit: 4) {
+    formats {
       nodes {
         id
         slug
         name
-        description
-        description_html
-        meta_fields
-        medium {
-          url
-          dimensions
-        }
-        posts {
-          nodes {
-            users {
-              id
-              first_name
-              last_name
-              slug
-            }
-            categories {
-              slug
-              name
-            }
-            medium {
-              alt_text
-              url
-              dimensions
-            }
-            published_date
-            id
-            status
-            subtitle
-            title
-            slug
-            excerpt
-          }
-        }
       }
     }
-    posts {
+    posts(tags:{
+      slugs: [$id]
+    }) {
       nodes {
         users {
           id
@@ -79,17 +52,24 @@ try {
           url
           dimensions
         }
+        format {
+          name
+          slug
+        }
         published_date
         id
+        excerpt
         status
         subtitle
         title
         slug
-        excerpt
       }
     }
   }
-      `,
+`,
+      variables: {
+        id: slug,
+      },
     }),
   });
 
@@ -104,6 +84,5 @@ try {
 ---
 
 <Layout>
-  <Homepage data={data} />
+  <Tag data={data} />
 </Layout>
-<Seo title={data?.space?.name} client:load />

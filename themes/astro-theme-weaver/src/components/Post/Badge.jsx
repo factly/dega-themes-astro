@@ -1,8 +1,4 @@
-/** @jsx jsx */
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { Link } from 'gatsby';
-import { jsx } from 'theme-ui';
-
 /**
  * TODO: 1. Add transitions, borderWidth, borderRadius to theme-ui
  */
@@ -28,15 +24,7 @@ const Badge = ({ url, name }) => {
       //   borderRadius: '16px',
       //   color: 'white',
       // }}
-      sx={{
-        fontWeight: 500,
-        fontSize: '14px',
-        lineHeight: '20px',
-        textAlign: 'center',
-        color: '#ea364a',
-        alignItems: 'center',
-        padding: '2px 10px',
-      }}
+      className="font-[500] text-[14px] text-[#ea364a] leading-[20px] text-center items-center p-[2px_10px]"
     >
       {name}
     </Link>

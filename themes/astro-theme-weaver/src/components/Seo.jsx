@@ -64,8 +64,6 @@ const Seo = ({
         /> */}
     {icon && <link rel="icon" href={icon} />}
     {canonical && <link rel="canonical" href={canonical} />}
-    <html lang="en" />
-    {children}
   </Helmet>
 );
 

@@ -1,5 +1,5 @@
 import Post from '@components/Post';
-import { isBrowser } from '@helpers/isBrowser.js';
+import { isBrowser } from '@helpers/isBrowser';
 import Seo from '@components/Seo';
 import StoryCard from '@components/UI/StoryCard';
 
@@ -7,7 +7,7 @@ import StoryCard from '@components/UI/StoryCard';
  * TODO: Add loader for infinite-scroller
  */
 const PostDetails = ({ data }) => {
-  const { space, post } = data;
+  const { posts, space, post } = data;
 
   // for sharing links
   const title = encodeURIComponent(post.title);

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, createRef } from 'react'; // eslint-disable-line no-unused-vars
 import { Helmet } from 'react-helmet';
-import FactCheckWidget from '@components/Post/FactCheckWidget';
-import Badge from '@components/Post/Badge';
+// import FactCheckWidget from '@components/Post/FactCheckWidget';
+// import Badge from '@components/Post/Badge';
 import Seo from '@components/Seo';
 import parseDate from '@helpers/parseDate.js';
 import {
@@ -16,7 +16,7 @@ import {
 } from 'react-icons/fa';
 //import { FaTwitter, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import { isBrowser } from '@helpers/isBrowser';
-import { parseTiptapContent } from '@helpers/parseTiptapContent.js';
+import { parseTiptapContent } from '@helpers/parseTiptapContent.jsx';
 
 /**
  * TODO: URI encoding

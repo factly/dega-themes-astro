@@ -1,7 +1,7 @@
 import StoryCard from '../UI/StoryCard';
 
 const Homepage = ({ data }) => {
-  const { space, categories, factchecks, posts } = data;
+  const { posts } = data;
 
   const featuredPosts = posts.nodes.slice(0, 3);
 

@@ -1,0 +1,78 @@
+---
+import Navbar from '@components/Layout/Navbar.jsx';
+import Footer from '@components/Layout/Footer.jsx';
+import Seo from '@components/Seo.jsx';
+
+import '@css/main.css';
+import '@css/styles.css';
+import '@css/normalize.css';
+
+let data = {};
+let space = '',
+  menu = '';
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query {
+      menu {
+        nodes {
+          menu
+          id
+          slug
+          name
+        }
+      }
+      space {
+        description
+        name
+        site_title
+        tag_line
+        site_address
+        fav_icon {
+          url
+          dimensions
+        }
+        logo {
+          url
+          dimensions
+        }
+      }
+    }
+    `,
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+  space = data?.space;
+  menu = data?.menu;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<div class="is-head-b--a_n">
+  <Seo
+    title={`${space?.site_title} - ${space?.tag_line}`}
+    canonical={space?.site_address}
+    image={`${space?.logo?.url?.proxy}?resize:fill:1200:330/enlarge:1/gravity:sm/pd:150:40:150:40`}
+    description={space?.description !== 'null' ? space?.description : space?.site_title}
+  >
+    {space?.fav_icon && <link rel="icon" href={`${space?.fav_icon?.url?.proxy}`} />}
+  </Seo>
+  <Navbar data={data} client:load />
+  <main>
+    <slot />
+  </main>
+  <Footer space={space} />
+</div>

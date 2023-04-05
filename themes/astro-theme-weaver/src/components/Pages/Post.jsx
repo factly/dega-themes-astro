@@ -10,7 +10,7 @@ const PostDetails = ({ data }) => {
   const { space, post } = data;
 
   // for sharing links
-  const title = encodeURIComponent(post.title);
+  const title = encodeURIComponent(post?.title);
   let url;
   if (isBrowser) {
     url = encodeURIComponent(window.location.href);

@@ -1,5 +1,5 @@
 ---
-import Post from '@components/Pages/Post.jsx';
+import PostAmp from '@components/Pages/PostAmp.jsx';
 import Seo from '@components/Seo.jsx';
 import Layout from '@layouts/Layout.astro';
 
@@ -18,7 +18,7 @@ try {
     },
     body: JSON.stringify({
       query: `
-      query ($id: String!) {
+  query ($id: String!) {
     space {
       site_address
     }
@@ -110,8 +110,8 @@ try {
         }
       }
     }
-  } 
-      `,
+  }
+`,
       variables: {
         id: slug,
       },
@@ -123,11 +123,12 @@ try {
   }
   const json = await response.json();
   data = json.data;
+  post = data.post;
 } catch (e) {
   console.log(e);
 }
 ---
 
 <Layout>
-  <Post data={data} client:load />
+  <PostAmp data={data} client:load />
 </Layout>

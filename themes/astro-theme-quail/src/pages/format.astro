@@ -1,12 +1,9 @@
 ---
-import Post from '@components/Pages/Post.jsx';
+import Format from '@components/Pages/Format.jsx';
 import Seo from '@components/Seo.jsx';
 import Layout from '@layouts/Layout.astro';
 
-const { slug } = Astro.params;
-
-let data = {},
-  post = {};
+let data = {};
 
 try {
   const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
@@ -112,9 +109,6 @@ try {
     }
   } 
       `,
-      variables: {
-        id: slug,
-      },
     }),
   });
 
@@ -129,5 +123,5 @@ try {
 ---
 
 <Layout>
-  <Post data={data} client:load />
+  <Format data={data} />
 </Layout>

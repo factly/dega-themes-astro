@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet';
+import Seo from '@components/Seo';
 import parseDate from '@helpers/parseDate';
-import { parseTiptapContent } from '@helpers/parseTiptapContent.jsx';
+import { parseTiptapContent } from '@helpers/parseTiptapContent';
 import {
   FaTwitterSquare,
   FaFacebookSquare,

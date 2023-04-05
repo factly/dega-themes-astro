@@ -1,20 +1,20 @@
-import Post from '@components/Post';
-import { isBrowser } from '@helpers/isBrowser';
+import Post from '@components/Post/index.jsx';
 import Seo from '@components/Seo';
-import StoryCard from '@components/UI/StoryCard';
 
 /**
  * TODO: Add loader for infinite-scroller
  */
-const PostDetails = ({ data }) => {
-  const { posts, space, post } = data;
+const PostDetailsAmp = ({ data }) => {
+  const { posts, space, post, recentPosts } = data;
+  const postEdge = posts.edges.filter(({ node }) => node.id === post.id)[0];
+  const { previous: previousPost, next: nextPost } = postEdge;
 
   // for sharing links
-  const title = encodeURIComponent(post.title);
-  let url;
-  if (isBrowser) {
-    url = encodeURIComponent(window.location.href);
-  }
+  // const title = encodeURIComponent(post.title);
+  // let url;
+  // if (isBrowser) {
+  //   url = encodeURIComponent(window.location.href);
+  // }
 
   return (
     <>
@@ -25,20 +25,11 @@ const PostDetails = ({ data }) => {
         canonical={`${space.site_address}/${post.slug}`}
         type="article"
       />
-      <div className="site-content">
-        <main id="site-main" className="site-main">
-          <Post key={`details${post.id}`} post={post} />
-          {/* <aside className="read-more-wrap outer">
-            <div className="read-more inner">
-              {recentPosts.nodes.slice(0, 3).map((post) => (
-                <StoryCard post={post} />
-              ))}
-            </div>
-          </aside> TODO: REMOVALS */}
-        </main>
-      </div>
+      <main id="sc-main" className="sc-main">
+        <Post post={post} previous={previousPost} next={nextPost} />
+      </main>
     </>
   );
 };
 
-export default PostDetails;
+export default PostDetailsAmp;

@@ -1,0 +1,133 @@
+---
+import Post from '@components/Pages/Post.jsx';
+import Seo from '@components/Seo.jsx';
+import Layout from '@layouts/Layout.astro';
+
+const { slug } = Astro.params;
+
+let data = {},
+  post = {};
+
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query ($id: String!) {
+    space {
+      site_address
+    }
+    post(slug: $id) {
+      published_date
+      description
+      description_html
+      excerpt
+      id
+      schemas
+      slug
+      status
+      subtitle
+      title
+      updated_at
+      users {
+        email
+        first_name
+        last_name
+        display_name
+        id
+        slug
+      }
+      tags {
+        id
+        name
+        slug
+        description
+        description_html
+      }
+      medium {
+        alt_text
+        id
+        url
+        dimensions
+      }
+      format {
+        name
+        slug
+        id
+        description
+      }
+      claims {
+        checked_date
+        claim_date
+        claim_sources
+        claimant {
+          description
+          description_html
+          id
+          name
+          slug
+          tag_line
+        }
+        description
+        description_html
+        id
+        fact
+        review_sources
+        slug
+        claim
+        rating {
+          description
+          description_html
+          id
+          name
+          numeric_value
+          slug
+          medium {
+            alt_text
+            id
+            url
+            dimensions
+          }
+        }
+      }
+      categories {
+        description
+        description_html
+        created_at
+        id
+        name
+        slug
+        medium {
+          alt_text
+          id
+          url
+          dimensions
+        }
+      }
+    }
+  } 
+      `,
+      variables: {
+        id: slug,
+      },
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<Layout>
+  <Post data={data} client:load />
+</Layout>

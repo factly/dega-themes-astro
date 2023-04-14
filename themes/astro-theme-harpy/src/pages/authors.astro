@@ -1,0 +1,49 @@
+---
+import Authors from '@components/Pages/Authors.jsx';
+import Seo from '@components/Seo.jsx';
+import Layout from '@layouts/Layout.astro';
+
+let data = {};
+
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `query {
+    users {
+      nodes {
+        first_name
+        last_name
+        email
+        medium {
+          url
+          dimensions
+        }
+        social_media_urls
+        description
+        slug
+        display_name
+      }
+    }
+  }`,
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<Layout>
+  <Authors data={data} />
+</Layout>

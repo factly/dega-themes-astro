@@ -10,6 +10,7 @@ import '@fontsource/inter/700.css';
 import '@fontsource/inter/800.css';
 import '@fontsource/inter/900.css';
 import '@static/css/normalize.css';
+import '@static/fonts/fonts.css';
 import '@static/css/styles.css';
 import '@static/css/main.css';
 
@@ -69,12 +70,11 @@ try {
 
 <div class="is-head-b--a_n">
   <Seo
-    title={`${space?.site_title} - ${space?.tag_line}`}
-    canonical={space?.site_address}
+    title={`${space.site_title} - ${space.tag_line}`}
     image={`${space?.logo?.url?.proxy}?resize:fill:1200:330/enlarge:1/gravity:sm/pd:150:40:150:40`}
-    description={space?.description !== 'null' ? space?.description : space?.site_title}
+    description={space.description !== 'null' ? space.description : space.site_title}
   >
-    {space?.fav_icon && <link rel="icon" href={`${space?.fav_icon?.url?.proxy}`} />}
+    {space.fav_icon && <link rel="icon" href={`${space.fav_icon?.url?.proxy}`} />}
   </Seo>
   <Navbar data={data} client:load />
   <main>

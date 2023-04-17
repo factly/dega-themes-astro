@@ -1,0 +1,88 @@
+---
+import Author from '@components/Pages/Author.jsx';
+import Seo from '@components/Seo.jsx';
+import Layout from '@layouts/Layout.astro';
+
+const { slug } = Astro.params;
+
+let data = {};
+
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+  query ($slug: String!) {
+    user(slug: $slug) {
+      first_name
+      last_name
+      email
+      medium {
+        url
+        dimensions
+      }
+      social_media_urls
+      description
+      slug
+      display_name
+    }
+    posts (users:{
+      slugs: [$slug]
+    }) {
+      nodes {
+        users {
+          id
+          first_name
+          last_name
+          display_name
+          slug
+        }
+        categories {
+          slug
+          name
+        }
+        medium {
+          alt_text
+          url
+          dimensions
+        }
+        format {
+          name
+          id
+          slug
+        }
+        published_date
+        id
+        excerpt
+        status
+        subtitle
+        title
+        slug
+      }
+    }
+  }
+`,
+      variables: {
+        slug,
+      },
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<Layout>
+  <Author data={data} />
+</Layout>

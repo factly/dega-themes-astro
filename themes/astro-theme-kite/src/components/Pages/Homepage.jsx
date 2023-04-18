@@ -8,7 +8,7 @@ const Homepage = ({ data }) => {
 
   return (
     <>
-      <Seo data={data} title={space?.name} />
+      <Seo title={space?.name} />
       <div className="container wrapper">
         <div className="grid post-feed js-post-feed">
           {posts.nodes.slice(0, 24).map((post) => (

@@ -20,7 +20,7 @@ const PostDetails = ({ data }) => {
   return (
     <>
       <div className="container wrapper">
-        <Post data={data} post={post} />
+        <Post post={post} />
       </div>
     </>
   );

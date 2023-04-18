@@ -22,18 +22,18 @@ import { isBrowser } from '@helpers/isBrowser';
  */
 
 const Post = ({ post, data }) => {
-  const title = encodeURIComponent(post.title);
+  const title = encodeURIComponent(post?.title);
   let url;
   if (isBrowser) {
-    url = encodeURIComponent(window.location.href);
+    url = encodeURIComponent(window?.location.href);
   }
 
   return (
     <>
-      <Seo data={data} title={post.title} description={post.excerpt} />
+      <Seo title={post?.title} description={post?.excerpt} />
       <Helmet>
-        {post.schemas &&
-          post.schemas.map((schema, i) => (
+        {post?.schemas &&
+          post?.schemas.map((schema, i) => (
             <script key={i} type="application/ld+json">
               {JSON.stringify(schema)}
             </script>
@@ -46,12 +46,12 @@ const Post = ({ post, data }) => {
             <li className="breadcrumb-item">
               <a href="/">Home</a>
             </li>
-            {post.categories.length > 0 && (
+            {post?.categories.length > 0 && (
               <li className="breadcrumb-item">
-                <a href={`/category/${post.categories[0].slug}/`}>{post.categories[0].name}</a>
+                <a href={`/category/${post.categories[0].slug}/`}>{post?.categories[0].name}</a>
               </li>
             )}
-            <li className="breadcrumb-item breadcrumb-item-current">{post.title}</li>
+            <li className="breadcrumb-item breadcrumb-item-current">{post?.title}</li>
           </ul>
           <div className="hero__content flex flex-col flex-cc m-b-lg">
             <div className="tag-list flex flex-wrap m-b-sm">
@@ -71,7 +71,7 @@ const Post = ({ post, data }) => {
               )}
             </div>
 
-            <h1 className="hero__title text-center">{post.title}</h1>
+            <h1 className="hero__title text-center">{post?.title}</h1>
 
             <div className="hero__post-info flex flex-cc text-acc-3 fw-500">
               <span>Mar 19, 2021</span>
@@ -85,7 +85,7 @@ const Post = ({ post, data }) => {
               <img
                 className="hero__img lazyautosizes lazyloaded"
                 src={post.medium.url.proxy}
-                alt={post.title}
+                alt={post?.title}
                 sizes="640px"
               />
             </figure>

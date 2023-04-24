@@ -1,5 +1,4 @@
 import * as React from 'react'; // eslint-disable-line no-unused-vars
-import Helmet from 'react-helmet';
 import {
   FaEnvelope,
   FaFacebookSquare,
@@ -28,9 +27,6 @@ function AuthorsListPage({ data }) {
   };
   return (
     <>
-      <Helmet>
-        <title> Authors </title>
-      </Helmet>
       <div sx={{ fontSize: '32px', px: '24px', maxWidth: '424px', mx: 'auto', mb: '24px' }}
         className='text-[32px] px-6 max-w-[424px] mx-auto mb-6'
       >

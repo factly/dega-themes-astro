@@ -30,16 +30,6 @@ const Post = ({ post, data }) => {
 
   return (
     <>
-      <Seo title={post?.title} description={post?.excerpt} />
-      <Helmet>
-        {post?.schemas &&
-          post?.schemas.map((schema, i) => (
-            <script key={i} type="application/ld+json">
-              {JSON.stringify(schema)}
-            </script>
-          ))}
-      </Helmet>
-
       <div className="container wrapper">
         <div className="hero">
           <ul className="breadcrumb">

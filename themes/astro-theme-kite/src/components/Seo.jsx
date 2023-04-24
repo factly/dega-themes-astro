@@ -62,9 +62,9 @@ const Seo = ({
           rel="amphtml"
           href={typeof window !== 'undefined' ? window.location.href.concat('amp') : ''}
         /> */}
-    <meta charSet='UTF-8' />
     {icon && <link rel="icon" href={icon} />}
     {canonical && <link rel="canonical" href={canonical} />}
+    {children}
   </Helmet>
 );
 

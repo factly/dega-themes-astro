@@ -3,9 +3,6 @@ import Helmet from 'react-helmet';
 function CategoriesListPage({ data }) {
   return (
     <>
-      <Helmet>
-        <title> Categories </title>
-      </Helmet>
       <div
         sx={{ maxWidth: '1400px', mx: 'auto', fontSize: '32px', px: '32px' }}
         className="max-w-[1400px] mx-auto text-[32px] px-8"

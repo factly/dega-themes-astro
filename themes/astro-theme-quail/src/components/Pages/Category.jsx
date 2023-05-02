@@ -6,10 +6,8 @@ import Seo from '@components/Seo';
 
 const CategoryDetailsFormat = ({ data }) => {
   const { category, posts } = data;
-
   return (
     <>
-      <Seo title={category.name} />
       <FormatPageLayout type="category" posts={posts.nodes} item={category} />;
     </>
   );

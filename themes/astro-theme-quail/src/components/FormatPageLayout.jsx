@@ -7,16 +7,16 @@ const FormatPageLayout = ({ type, posts, item }) => {
         <header className="sc-pagehead-content">
           <div className="sc-tag-label">{type}</div>
 
-          <h1 className="sc-tag-name sc-pagehead-title">{item.name}</h1>
+          <h1 className="sc-tag-name sc-pagehead-title">{item?.name}</h1>
 
           <div className="sc-tag-description sc-pagehead-description">
-            A collection of {posts.length} {posts.length === 1 ? 'issue' : `issues`}
+            A collection of {posts?.length} {posts?.length === 1 ? 'issue' : `issues`}
           </div>
         </header>
       </section>
 
       <div className="sc-feed">
-        {posts.map((post) => (
+        {posts?.map((post) => (
           <StoryCard post={post} />
         ))}{' '}
       </div>

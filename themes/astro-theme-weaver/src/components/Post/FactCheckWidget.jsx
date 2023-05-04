@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useRef, useState } from 'react'; // eslint-disable-line no-unused-vars
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronRight } from '@react-icons/all-files/fa/FaChevronRight';
+import { FaChevronLeft } from '@react-icons/all-files/fa/FaChevronLeft';
 import addDefaultSrc from '@helpers/addDefaultSrc';
 /**
  * TODO: Change PLaceholder Img to color

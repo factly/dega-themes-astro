@@ -4,17 +4,16 @@ import { Helmet } from 'react-helmet';
 // import Badge from '@components/Post/Badge';
 import Seo from '@components/Seo';
 import parseDate from '@helpers/parseDate.js';
-import {
-  FaRegClock,
-  FaFacebook,
-  FaTwitter,
-  FaWhatsapp,
-  FaPinterestSquare,
-  FaLinkedinIn,
-  FaEnvelope,
-  FaLink,
-} from 'react-icons/fa';
-//import { FaTwitter, FaFacebook, FaWhatsapp } from 'react-icons/fa';
+
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
+import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp';
+import { FaPinterestSquare } from '@react-icons/all-files/fa/FaPinterestSquare';
+import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
+import { FaLink } from '@react-icons/all-files/fa/FaLink';
+import { FaRegClock } from '@react-icons/all-files/fa/FaRegClock';
+
 import { isBrowser } from '@helpers/isBrowser';
 import { parseTiptapContent } from '@helpers/parseTiptapContent.jsx';
 

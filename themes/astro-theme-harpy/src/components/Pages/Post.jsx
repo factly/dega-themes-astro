@@ -1,14 +1,13 @@
 import React from 'react';
 import Post from '@components/Post/index.jsx';
 import { isBrowser } from '@helpers/isBrowser';
-import Seo from '@components/Seo';
-import {
-  FaTwitterSquare,
-  FaFacebookSquare,
-  FaWhatsappSquare,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa';
+
+import { FaChevronLeft } from '@react-icons/all-files/fa/FaChevronLeft';
+import { FaChevronRight } from '@react-icons/all-files/fa/FaChevronRight';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
+import { FaFacebookSquare } from '@react-icons/all-files/fa/FaFacebookSquare';
+import { FaWhatsappSquare } from '@react-icons/all-files/fa/FaWhatsappSquare';
+
 import parseDate from '@helpers/parseDate';
 
 /**
@@ -31,13 +30,6 @@ const PostDetails = ({ data }) => {
 
   return (
     <>
-      <Seo
-        title={degaPost.title}
-        description={degaPost.excerpt}
-        image={`${degaPost.medium?.url?.proxy}`}
-        canonical={`${space.site_address}/${degaPost.slug}`}
-        type="article"
-      />
       <div className="flex flex-wrap flex-row justify-center relative">
         <div
           sx={{
@@ -52,12 +44,6 @@ const PostDetails = ({ data }) => {
           <Post key={`details${degaPost.id}`} post={degaPost} />
           <div>
             <div
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                pb: (theme) => `${theme.space.spacing6}`,
-                borderBottomWidth: '1px',
-              }}
               className="flex flex-wrap pb-[1.5rem] border-b border-gray-200"
             >
               <div

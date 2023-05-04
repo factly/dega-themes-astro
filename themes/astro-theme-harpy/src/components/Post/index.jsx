@@ -14,7 +14,7 @@ import { parseTiptapContent } from '@helpers/parseTiptapContent';
  */
 
 const Post = ({ post }) => {
-  const title = encodeURIComponent(post.title);
+  const title = encodeURIComponent(post?.title);
   let url;
   if (isBrowser) {
     url = encodeURIComponent(window.location.href);
@@ -22,10 +22,10 @@ const Post = ({ post }) => {
 
   return (
     <>
-      <Seo title={post.title} description={post.excerpt} />
+      <Seo title={post?.title} description={post?.excerpt} />
       <Helmet>
-        {post.schemas &&
-          post.schemas.map((schema, i) => (
+        {post?.schemas &&
+          post?.schemas.map((schema, i) => (
             <script key={i} type="application/ld+json">
               {JSON.stringify(schema)}
             </script>
@@ -50,34 +50,34 @@ const Post = ({ post }) => {
               <article class="single-post post-card">
                 <header class="post-header">
                   <div class="tag-wrap">
-                    {post.categories.length > 0 && (
-                      <a href={`/category/${post.categories[0].slug}/`}>
-                        {post.categories[0].name}
+                    {post?.categories.length > 0 && (
+                      <a href={`/category/${post?.categories[0].slug}/`}>
+                        {post?.categories[0].name}
                       </a>
                     )}{' '}
                   </div>
-                  <h1 class="heading-large post-title">{post.title}</h1>
+                  <h1 class="heading-large post-title">{post?.title}</h1>
                   <div class="post-meta-wrap flex">
                     <div class="author-avatar-wrap">
-                      {post.users.length > 0 && (
-                        <a href={`/author/${post.users[0].slug}/`} class="author-image">
+                      {post?.users.length > 0 && (
+                        <a href={`/author/${post?.users[0].slug}/`} class="author-image">
                           <img
-                            src={post.users[0].medium?.url?.proxy}
+                            src={post?.users[0].medium?.url?.proxy}
                             loading="lazy"
-                            alt={post.users[0].display_name}
+                            alt={post?.users[0].display_name}
                           />
                         </a>
                       )}
                     </div>
                     <div class="meta-info">
                       <div class="author-names">
-                        <a href={`/author/${post.users[0].slug}/`}>
-                          {post.users[0].display_name}
+                        <a href={`/author/${post?.users[0].slug}/`}>
+                          {post?.users[0].display_name}
                         </a>
                       </div>
                       <div class="date-time">
-                        <time class="post-date" dateTime={parseDate(post.published_at)}>
-                          {parseDate(post.published_at)}
+                        <time class="post-date" dateTime={parseDate(post?.published_at)}>
+                          {parseDate(post?.published_at)}
                         </time>
                         {/* <span class="read-time">3 min read</span> */}
                       </div>
@@ -88,18 +88,18 @@ const Post = ({ post }) => {
                   <img
                     class="featured-image"
                     loading="lazy"
-                    srcset={`${post.medium?.url?.proxy}?rs:fill/w:320 300w,
-                    ${post.medium?.url?.proxy}?rs:fill/w:640 720w,
-                    ${post.medium?.url?.proxy}?rs:fill/w:720 960w,
-                    ${post.medium?.url?.proxy}?rs:fill/w:960 1200w,
-                    ${post.medium?.url?.proxy}?rs:fill/w:1200 2000w`}
+                    srcset={`${post?.medium?.url?.proxy}?rs:fill/w:320 300w,
+                    ${post?.medium?.url?.proxy}?rs:fill/w:640 720w,
+                    ${post?.medium?.url?.proxy}?rs:fill/w:720 960w,
+                    ${post?.medium?.url?.proxy}?rs:fill/w:960 1200w,
+                    ${post?.medium?.url?.proxy}?rs:fill/w:1200 2000w`}
                     sizes="(max-width: 1200px) 100vw, 1200px"
-                    src={`${post.medium?.url?.proxy}?rs:fill/w:1200`}
-                    alt={post.title}
+                    src={`${post?.medium?.url?.proxy}?rs:fill/w:1200`}
+                    alt={post?.title}
                   />
                 </div>
                 <div class="featured-image-caption text-center"></div>
-                <div class="post-content">{parseTiptapContent(post.description_html)}</div>
+                <div class="post-content">{parseTiptapContent(post?.description_html)}</div>
                 <div class="post-footer">
                   <div class="share-wrap">
                     <div class="share-title h5 text-center">Share this article:</div>
@@ -219,25 +219,25 @@ const Post = ({ post }) => {
                   <h3 class="h4 about-author-section-title">Written by</h3>
                   <div class="about-author flex">
                     <div class="avatar-wrap">
-                      {post.users.length > 0 && (
-                        <a href={`/author/${post.users[0].slug}/`}>
+                      {post?.users.length > 0 && (
+                        <a href={`/author/${post?.users[0].slug}/`}>
                           <img
-                            src={post.users[0].medium?.url?.proxy}
+                            src={post?.users[0].medium?.url?.proxy}
                             loading="lazy"
-                            alt={post.users[0].display_name}
+                            alt={post?.users[0].display_name}
                           />
                         </a>
                       )}
                     </div>
                     <div class="author-info">
                       <h3 class="name h4">
-                        {post.users.length > 0 && (
-                          <a href={`/author/${post.users[0].slug}/`}>
-                            {post.users[0].display_name}
+                        {post?.users.length > 0 && (
+                          <a href={`/author/${post?.users[0].slug}/`}>
+                            {post?.users[0].display_name}
                           </a>
                         )}
                       </h3>
-                      <div class="bio">{post.users.length > 0 && post.users[0].description}</div>
+                      <div class="bio">{post?.users.length > 0 && post?.users[0].description}</div>
                     </div>
                   </div>
                 </div>

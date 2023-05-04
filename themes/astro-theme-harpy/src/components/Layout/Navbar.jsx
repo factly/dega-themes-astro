@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaBars, FaSearch } from 'react-icons/fa';
+import { FaHome } from '@react-icons/all-files/fa/FaHome';
+import { FaBars } from '@react-icons/all-files/fa/FaBars';
+import { FaSearch } from '@react-icons/all-files/fa/FaSearch';
+
 import isBrowser from '@helpers/isBrowser';
 /**
  * @component Navbar

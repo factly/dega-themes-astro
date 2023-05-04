@@ -1,6 +1,5 @@
 ---
 import Categories from '@components/Pages/Categories.jsx';
-import Seo from '@components/Seo.jsx';
 import Layout from '@layouts/Layout.astro';
 
 let data = {};
@@ -43,6 +42,6 @@ try {
 }
 ---
 
-<Layout>
+<Layout title="Categories">
   <Categories data={data} />
 </Layout>

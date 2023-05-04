@@ -1,12 +1,9 @@
-import Helmet from 'react-helmet';
-import {
-  FaEnvelope,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaLink,
-  FaLinkedin,
-  FaTwitterSquare,
-} from 'react-icons/fa';
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
+import { FaFacebookSquare } from '@react-icons/all-files/fa/FaFacebookSquare';
+import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
+import { FaLink } from '@react-icons/all-files/fa/FaLink';
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 
 function AuthorsListPage({ data }) {
   const getIcon = (name) => {
@@ -27,9 +24,6 @@ function AuthorsListPage({ data }) {
   };
   return (
     <>
-      <Helmet>
-        <title> Authors </title>
-      </Helmet>
       <div
         sx={{ fontSize: '32px', px: '24px', maxWidth: '424px', mx: 'auto', mb: '24px' }}
         className="text-[32px] px-6 max-w-[424px] mx-auto mb-6"

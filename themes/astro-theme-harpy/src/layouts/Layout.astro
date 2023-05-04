@@ -1,7 +1,6 @@
 ---
 import Navbar from '@components/Layout/Navbar.jsx';
 import Footer from '@components/Layout/Footer.jsx';
-import Seo from '@components/Seo.jsx';
 
 import '@fontsource/inter';
 import '@fontsource/inter/500.css';
@@ -66,19 +65,46 @@ try {
 } catch (e) {
   console.log(e);
 }
+
+const {
+  title = `${space.site_title} - ${space.tag_line}`,
+  description = space.description !== 'null' ? space.description : space.site_title,
+  image = `${space?.logo?.url?.proxy}?resize:fill:1200:330/enlarge:1/gravity:sm/pd:150:40:150:40`,
+  canonical,
+  icon = `${space.fav_icon?.url?.proxy}`,
+  type,
+  fbAppId,
+  fbPages,
+} = Astro.props;
 ---
 
-<div class="is-head-b--a_n">
-  <Seo
-    title={`${space.site_title} - ${space.tag_line}`}
-    image={`${space?.logo?.url?.proxy}?resize:fill:1200:330/enlarge:1/gravity:sm/pd:150:40:150:40`}
-    description={space.description !== 'null' ? space.description : space.site_title}
-  >
-    {space.fav_icon && <link rel="icon" href={`${space.fav_icon?.url?.proxy}`} />}
-  </Seo>
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description || title} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content={title} property="og:title" />
+    {canonical && <meta content={canonical} property="og:url" />}
+    {image && <meta content={image} property="og:image" />}
+    {description && <meta content={description} property="og:description" />}
+    {type && <meta content={type} property="og:type" />}
+    {fbAppId && <meta content={fbAppId} property="fb:app_id" />}
+    {fbPages && <meta content={fbPages} property="fb:pages" />}
+    {icon && <link rel="icon" href={icon} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta charset="UTF-8" />
+    <slot name="head" />
+  </head>
   <Navbar data={data} client:load />
-  <main>
+  <main
+    class="main"
+    data-grid-columns="3"
+    data-color-scheme="light"
+    data-view-type="grid"
+    data-header="sticky"
+  >
     <slot />
   </main>
   <Footer space={space} />
-</div>
+
+</html>

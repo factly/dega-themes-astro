@@ -1,6 +1,10 @@
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { FaFacebook, FaTwitter, FaWhatsapp, FaLinkedin } from 'react-icons/fa';
-import { GoMarkGithub } from 'react-icons/go';
+// import { FaFacebook, FaTwitter, FaWhatsapp, FaLinkedin } from '@react-icons/all-files';
+import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp';
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
+import { GoMarkGithub } from '@react-icons/all-files/go/GoMarkGithub'
 
 const Footer = () => (
   <footer className="flex flex-wrap mt-8 text-center justify-center items-center gap-8 bg-[#5F3CC0] text-[#D6BBFB] py-8">

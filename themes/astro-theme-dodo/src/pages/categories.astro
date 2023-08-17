@@ -1,0 +1,47 @@
+---
+import Categories from '@components/Pages/Categories.jsx';
+import Layout from '@layouts/Layout.astro';
+
+let data = {};
+
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `query {
+    categories {
+      nodes {
+        description
+        description_html
+        id
+        medium {
+          alt_text
+          url
+          dimensions
+        }
+        name
+        slug
+      }
+    }
+  }`,
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+} catch (e) {
+  console.log(e);
+}
+---
+
+<Layout title="Categories">
+  <Categories data={data} />
+</Layout>

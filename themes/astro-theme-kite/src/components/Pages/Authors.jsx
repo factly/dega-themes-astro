@@ -1,12 +1,9 @@
 import * as React from 'react'; // eslint-disable-line no-unused-vars
-import {
-  FaEnvelope,
-  FaFacebookSquare,
-  FaInstagramSquare,
-  FaLink,
-  FaLinkedin,
-  FaTwitterSquare,
-} from 'react-icons/fa';
+import { FaFacebookSquare } from '@react-icons/all-files/fa/FaFacebookSquare';
+import { FaInstagramSquare } from '@react-icons/all-files/fa/FaInstagramSquare';
+import { FaLink } from '@react-icons/all-files/fa/FaLink';
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
 
 function AuthorsListPage({ data }) {
   const getIcon = (name) => {
@@ -20,7 +17,8 @@ function AuthorsListPage({ data }) {
       case 'linkedin':
         return <FaLinkedin size="1.75rem" color="#0077b5" />;
       case 'email':
-        return <FaEnvelope size="1.75rem" color="#172b4d" />;
+        // return <FaEnvelope size="1.75rem" color="#172b4d" />;
+        return <div></div>
       default:
         return <FaLink size="1.75rem" />;
     }

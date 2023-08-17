@@ -1,18 +1,31 @@
 import { Helmet } from 'react-helmet';
 import Seo from '@components/Seo';
 import parseDate from '@helpers/parseDate';
-import {
-  FaRegClock,
-  FaFacebook,
-  FaTwitter,
-  FaWhatsapp,
-  FaPinterestSquare,
-  FaLinkedinIn,
-  FaEnvelope,
-  FaLink,
-  FaLinkedin,
-  FaCopy,
-} from 'react-icons/fa';
+// import {
+//   FaRegClock,
+//   FaFacebook,
+//   FaTwitter,
+//   FaWhatsapp,
+//   FaPinterestSquare,
+//   FaLinkedinIn,
+//   FaLink,
+//   FaLinkedin,
+//   FaCopy,
+// } from 'react-icons/fa';
+import { FaTwitter } from '@react-icons/all-files/fa/FaTwitter';
+import { FaFacebook } from '@react-icons/all-files/fa/FaFacebook';
+import { FaWhatsapp } from '@react-icons/all-files/fa/FaWhatsapp';
+import { FaLinkedin } from '@react-icons/all-files/fa/FaLinkedin';
+import { GoMarkGithub } from '@react-icons/all-files/go/GoMarkGithub';
+import { FaCopy } from '@react-icons/all-files/fa/FaCopy';
+import { FaLink } from '@react-icons/all-files/fa/FaLink';
+import { FaRegClock } from '@react-icons/all-files/fa/FaRegClock';
+import { FaLinkedinIn } from '@react-icons/all-files/fa/FaLinkedinIn';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
+import { FaWhatsappSquare } from '@react-icons/all-files/fa/FaWhatsappSquare';
+import { FaPinterest } from '@react-icons/all-files/fa/FaPinterest';
+import { FaPinterestSquare } from '@react-icons/all-files/fa/FaPinterestSquare';
+import { FaEnvelope } from '@react-icons/all-files/fa/FaEnvelope';
 import { isBrowser } from '@helpers/isBrowser';
 
 /**

@@ -2,13 +2,11 @@ import { Helmet } from 'react-helmet';
 import Seo from '@components/Seo';
 import parseDate from '@helpers/parseDate';
 import { parseTiptapContent } from '@helpers/parseTiptapContent';
-import {
-  FaTwitterSquare,
-  FaFacebookSquare,
-  FaWhatsappSquare,
-  FaChevronLeft,
-  FaChevronRight,
-} from 'react-icons/fa';
+import { FaChevronLeft } from '@react-icons/all-files/fa/FaChevronLeft';
+import { FaChevronRight } from '@react-icons/all-files/fa/FaChevronRight';
+import { FaTwitterSquare } from '@react-icons/all-files/fa/FaTwitterSquare';
+import { FaFacebookSquare } from '@react-icons/all-files/fa/FaFacebookSquare';
+import { FaWhatsappSquare } from '@react-icons/all-files/fa/FaWhatsappSquare';
 /**
  * TODO: URI encoding
  * TODO: borderradius in theme ui
@@ -24,15 +22,6 @@ const Post = ({ post, previous, next }) => {
 
   return (
     <>
-      <Seo title={post.title} description={post.excerpt} />
-      <Helmet>
-        {post.schemas &&
-          post.schemas.map((schema, i) => (
-            <script key={i} type="application/ld+json">
-              {JSON.stringify(schema)}
-            </script>
-          ))}
-      </Helmet>
       <article className="sc-article post">
         <header className="sc-article-header sc-canvas">
           <span className="sc-article-meta">

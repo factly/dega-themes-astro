@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'; // eslint-disable-line no-unused-vars
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import parseEditorJsData from '@helpers/parseEditorJsData';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft } from '@react-icons/all-files/fa/FaChevronLeft'
+import { FaChevronRight } from '@react-icons/all-files/fa/FaChevronRight'
 import addDefaultSrc from '@helpers/addDefaultSrc';
 /**
  * TODO: Change PLaceholder Img to color
@@ -57,6 +58,16 @@ const FactCheckWidget = ({ claims }) => {
     );
     setScrollWidth(maxScroll);
   }, []);
+  /* 
+  useEffect(()=>{
+    if(!sliderElement.current) return;
+    if(sliderElement.current.firstElementChild.getBoundingClientRect().x-num>=0) {
+      setDisable({left:true})
+    }
+    if(sliderElement.current.lastElementChild.getBoundingClientRect().x-num<=0) {
+      setDisable({right:true})
+    }
+  },[sliderElement.current ]) */
 
   return (
     <div
@@ -66,6 +77,7 @@ const FactCheckWidget = ({ claims }) => {
         fontSize: (theme) => `${theme.fontSizes.body}`,
         mb: (theme) => `${theme.space.spacing5}`,
       }}
+      className='w-full lg:w-3/4 mx-auto mb-5'
     >
       {claims.length >= 1 && (
         <React.Fragment>
@@ -78,6 +90,7 @@ const FactCheckWidget = ({ claims }) => {
               pt: (theme) => `${theme.space.spacing6}`,
               pb: (theme) => `${theme.space.spacing3}`,
             }}
+            className='flex content-center justify-between pt-6 pb-3'
           >
             <button
               type="button"
@@ -95,6 +108,7 @@ const FactCheckWidget = ({ claims }) => {
                 cursor: disable.left ? 'not-allowed' : 'pointer',
                 opacity: disable.left ? 0.5 : null,
               }}
+              className='b-1 text-left p-3 focus:outline-none'
             >
               <FaChevronLeft sx={{ fill: 'currentColor', width: 4, height: 4 }} />
             </button>
@@ -120,6 +134,7 @@ const FactCheckWidget = ({ claims }) => {
                 cursor: disable.right ? 'not-allowed' : 'pointer',
                 opacity: disable.right ? 0.5 : null,
               }}
+              className='b-1 text-left p-3 focus:outline-none'
             >
               <FaChevronRight sx={{ fill: 'currentColor', width: 4, height: 4 }} />
             </button>
@@ -164,6 +179,55 @@ const FactCheckWidget = ({ claims }) => {
                       </h2>
                       {claim.claimant.name}
                     </div>
+                    {/* <div
+                      sx={{
+                        display: 'flex',
+                        flex: '1 1 0%',
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                      }}
+                    >
+                      <a
+                        sx={{
+                          display: 'block',
+                          px: 2,
+                          py: 1,
+                          fontWeight: 'semibold',
+                          borderRadius: 'default',
+                          // '&:first-child': { px: 0 },
+                          '&:hover': { bg: (theme) => `${theme.colors.gray[8]}` },
+                        }}
+                        href="/"
+                      >
+                        <svg
+                          sx={{
+                            fill: 'currentColor',
+                            stroke: 'currentColor',
+                            width: 5,
+                            height: 5,
+                            color: (theme) => `${theme.colors.gray[4]}`,
+                          }}
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 36 36"
+                        >
+                          <g transform="translate(-807 -2277)">
+                            <ellipse
+                              cx="18"
+                              cy="18"
+                              rx="18"
+                              ry="18"
+                              transform="translate(807 2277)"
+                              stroke="#fff"
+                            />
+                            <path
+                              d="M18,0A18,18,0,1,0,36,18,18,18,0,0,0,18,0ZM16,18a3.158,3.158,0,0,1-.188,1.068l5.024,2.417a3.225,3.225,0,1,1-.789,1.64L14.7,20.552a3.162,3.162,0,1,1,0-5.1l5.349-2.572a3.165,3.165,0,1,1,.788,1.64L15.81,16.932A3.153,3.153,0,0,1,16,18Z"
+                              transform="translate(806.999 2277)"
+                              fill="#fff"
+                            />
+                          </g>
+                        </svg>
+                      </a>
+                    </div> */}
                   </div>
                   <div
                     sx={{
@@ -183,6 +247,7 @@ const FactCheckWidget = ({ claims }) => {
                         <img
                           src={claim.rating.medium?.url.proxy}
                           alt={claim.rating.medium?.alt_text}
+                          onError={addDefaultSrc}
                           sx={{
                             width: '1/6',
                             height: 'full',

@@ -1,8 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /** @jsx jsx */
 import React, { useEffect, useRef, useState } from 'react'; // eslint-disable-line no-unused-vars
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import { jsx } from 'theme-ui';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { FaChevronLeft } from '@react-icons/all-files/fa/FaChevronLeft';
+import { FaChevronRight } from '@react-icons/all-files/fa/FaChevronRight';
 import parseEditorJsData from '@helpers/parseEditorJsData';
 import addDefaultSrc from '@helpers/addDefaultSrc';
 /**

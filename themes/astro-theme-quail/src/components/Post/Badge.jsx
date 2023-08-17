@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import React from 'react'; // eslint-disable-line no-unused-vars
-import { Link } from 'gatsby';
 import { jsx } from 'theme-ui';
 
 /**
@@ -8,8 +7,8 @@ import { jsx } from 'theme-ui';
  */
 const Badge = ({ url, name }) => {
   return (
-    <Link
-      to={`/category/${url}`}
+    <a
+      href={`/category/${url}`}
       // sx={{
       //   m: (theme) => `${theme.space.spacing3}`,
       //   bg: '#000',
@@ -41,7 +40,7 @@ const Badge = ({ url, name }) => {
       }}
     >
       {name}
-    </Link>
+    </a>
   );
 };
 

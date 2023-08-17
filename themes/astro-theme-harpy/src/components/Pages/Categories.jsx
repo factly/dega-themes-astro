@@ -1,41 +1,17 @@
-import Helmet from 'react-helmet';
-
 function CategoriesListPage({ data }) {
   return (
     <>
-      <Helmet>
-        <title> Categories </title>
-      </Helmet>
       <div
-        sx={{
-          maxWidth: '1270px',
-          mx: 'auto',
-          fontSize: '32px',
-          px: '32px',
-          mb: '32px',
-          textAlign: 'center',
-        }}
         className="max-w-[1270px] mx-auto text-[32px] px-8 mb-8 text-center"
       >
         <h1>Categories</h1>
       </div>
       <div
-        sx={{
-          maxWidth: '1270px',
-          mx: 'auto',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '32px',
-          textAlign: 'center',
-          px: '24px',
-          mb: '48px',
-          justifyContent: 'center',
-        }}
         className="max-w-[1270px] mx-auto flex flex-wrap gap-8 text-center px-6 mb-12 justify-center"
       >
-        {data.categories.nodes.map((category) => (
+        {data?.categories?.nodes?.map((category) => (
           <>
-            <div sx={{}}>
+            <div>
               <a href={category.slug}>
                 {' '}
                 {category.medium}

@@ -1,6 +1,6 @@
 import Post from '@components/Post/index.jsx';
 import Seo from '@components/Seo';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+// import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import parseDate from '@helpers/parseDate';
 
 /**

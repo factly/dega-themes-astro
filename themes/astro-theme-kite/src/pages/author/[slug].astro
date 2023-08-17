@@ -3,6 +3,37 @@ import Author from '@components/Pages/Author.jsx';
 import Seo from '@components/Seo.jsx';
 import Layout from '@layouts/Layout.astro';
 
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query {
+        users(limit: 1000) {
+          nodes {
+            slug
+          }
+        }
+      }
+      `,
+    }),
+  });
+
+  const json = await response.json();
+  const authors = json.data.users.nodes;
+
+  const paths = authors.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return paths;
+}
+
 const { slug } = Astro.params;
 
 let data = {};

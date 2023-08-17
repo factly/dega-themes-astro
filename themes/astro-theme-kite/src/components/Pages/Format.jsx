@@ -15,7 +15,7 @@ const FormatDetails = ({ data }) => {
           }}
           className='mt-[3rem] mb-[1.5rem] text-center text-[1.5rem] sm:text-[2rem]'
         >
-          {posts.nodes[0]?.format.name}
+          {/* {posts.nodes[0]?.format.name} */}
         </h1>
         <div
           sx={{
@@ -26,7 +26,7 @@ const FormatDetails = ({ data }) => {
           }}
           className='flex flex-col pb-6 lg:pt-[3rem]'
         >
-          {posts.nodes.length > 0 ? (
+          {posts?.nodes?.length > 0 ? (
             <div
               sx={{
                 display: 'grid',
@@ -36,7 +36,7 @@ const FormatDetails = ({ data }) => {
               }}
               className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 md:px-6'
             >
-              {posts.nodes.map((item, index) => (
+              {posts?.nodes?.map((item, index) => (
                 <StoryCard key={index} post={item} />
               ))}
             </div>

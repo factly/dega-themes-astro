@@ -3,6 +3,37 @@ import Post from '@components/Pages/Post.jsx';
 import Seo from '@components/Seo.jsx';
 import Layout from '@layouts/Layout.astro';
 
+export async function getStaticPaths() {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query {
+        posts(limit: 1000) {
+          nodes {
+            slug
+          }
+        }
+      }
+      `,
+    }),
+  });
+
+  const json = await response.json();
+  const posts = json.data.posts.nodes;
+
+  const paths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return paths;
+}
+
 const { slug } = Astro.params;
 
 let data = {},
@@ -128,6 +159,12 @@ try {
 }
 ---
 
-<Layout>
+<Layout
+  title={data?.post?.title}
+  description={data?.post?.excerpt}
+  image={`${data?.post.medium?.url?.proxy}`}
+  canonical={`${data?.space.site_address}/${data?.post.slug}`}
+  type="article"
+>
   <Post data={data} client:load />
 </Layout>

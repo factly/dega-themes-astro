@@ -1,0 +1,112 @@
+---
+import Navbar from '@components/Layout/Navbar.jsx';
+import Footer from '@components/Layout/Footer.jsx';
+
+import '@fontsource/inter';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '@fontsource/inter/800.css';
+import '@fontsource/inter/900.css';
+import '@static/css/normalize.css';
+import '@static/fonts/fonts.css';
+import '@static/css/styles.css';
+import '@static/css/main.css';
+
+let data = {};
+let space = '',
+  menu = '';
+try {
+  const response = await fetch(import.meta.env.PUBLIC_DEGA_API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Space': import.meta.env.PUBLIC_SPACE_ID,
+      'X-Dega-API-Key': import.meta.env.PUBLIC_DEGA_API_KEY,
+    },
+    body: JSON.stringify({
+      query: `
+      query {
+      menu {
+        nodes {
+          menu
+          id
+          slug
+          name
+        }
+      }
+      space {
+        description
+        name
+        site_title
+        tag_line
+        site_address
+        fav_icon {
+          url
+          dimensions
+        }
+        logo {
+          url
+          dimensions
+        }
+      }
+    }
+    `,
+    }),
+  });
+
+  if (response.status !== 200) {
+    throw new Error('Failed to fetch data. Response code: ' + response.status);
+  }
+  const json = await response.json();
+  data = json.data;
+  space = data?.space;
+  menu = data?.menu;
+} catch (e) {
+  console.log(e);
+}
+
+const {
+  title = `${space.site_title} - ${space.tag_line}`,
+  description = space.description !== 'null' ? space.description : space.site_title,
+  image = `${space?.logo?.url?.proxy}?resize:fill:1200:330/enlarge:1/gravity:sm/pd:150:40:150:40`,
+  canonical,
+  icon = `${space.fav_icon?.url?.proxy}`,
+  type,
+  fbAppId,
+  fbPages,
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta name="description" content={description || title} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta content={title} property="og:title" />
+    {canonical && <meta content={canonical} property="og:url" />}
+    {image && <meta content={image} property="og:image" />}
+    {description && <meta content={description} property="og:description" />}
+    {type && <meta content={type} property="og:type" />}
+    {fbAppId && <meta content={fbAppId} property="fb:app_id" />}
+    {fbPages && <meta content={fbPages} property="fb:pages" />}
+    {icon && <link rel="icon" href={icon} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta charset="UTF-8" />
+    <slot name="head" />
+  </head>
+  <Navbar data={data} client:load />
+  <main
+    id="main"
+    sx={{
+      maxWidth: '1560px',
+      mx: 'auto',
+    }}
+    className="max-w-[1560px] mx-auto"
+  >
+    <slot />
+  </main>
+  <Footer space={space} />
+
+
+</html>

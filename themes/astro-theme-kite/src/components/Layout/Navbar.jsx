@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaHome, FaBars, FaTimes } from 'react-icons/fa';
+// import { FaHome, FaBars, FaTimes } from 'react-icons/fa/index';
+import { FaHome } from '@react-icons/all-files/fa/FaHome';
+import { FaBars } from '@react-icons/all-files/fa/FaBars';
+import { FaTimes } from '@react-icons/all-files/fa/FaTimes';
 import isBrowser from '@helpers/isBrowser';
 
 /**
